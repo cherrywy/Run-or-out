@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>不瘦学院</title>
+		<link rel="import" href="./common/header.html?__inline">
+		<link rel="stylesheet" type="text/css" href="../static/css/joinSuccess.scss" />
+		<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	</head>
+
+	<body id="join-success-v" v-cloak>
+		<div class="top-content" v-show="joinSuccess">
+			<div class="left">
+				<div class="name">{{successContent.name}}</div>
+				<div class="tuition">学费：￥{{successContent.unit_price/100}}元</div>
+				<div class="semester tuition">学期：{{successContent.start | dateCheck}}~{{successContent.end | dateCheck}}</div>
+				<div class="class tuition">班级：请点击“我的班群”进班级群</div>
+			</div>
+			<div class="right">
+				<div class="avatar" style="background-image: url({{userInfo.avatar}}); background-size: 1rem 1rem;"></div>
+				<div class="myclass">我的班群</div>
+			</div>	
+		</div>
+		<div class="school" style="width:100%;height:auto;">
+			<a onclick="MtaH5.clickStat('daidaistory');" style="display: block; position: absolute;z-index: 15; margin-top: 13rem;  width: 100%;height: 150px;" href="http://mp.weixin.qq.com/s?__biz=MzI4NzM5NjIyMA==&mid=100000427&idx=1&sn=92b70a397cfaa0db3816da0fec3c1005&chksm=6bcf1ab85cb893ae7da4140fcb6105af22bff13b5bc4698ad48bbfa5529f8a621db62c7b1fe7&scene=0#rd"></a>
+			<img  src="https://o71y8058d.qnssl.com/meta/2017-01-13/college.jpg" style="width: 100%;">
+			
+		</div>
+		<!--<img  src="../static/images/slimSchool.jpg" style="width: 100%;">-->
+		
+		<div class="foot-content" v-show="showCode">
+			<div class="triangle">
+				<div class="triangle-up"></div>
+			</div>
+			<div class="daicode">
+				<div class="close">关闭</div>
+				<div class="text">
+					1.将本报名成功页面截图;<br/>
+					2.加下方呆呆教练为好友;<br/>
+					3.截图发送教练拉你入群;<br/>
+				</div>
+				<div class="code">
+					<img src="../static/images/daidaicode.jpg">
+				</div>
+			</div>
+		</div>
+		
+		<div class="join-footer">
+			<div class="weixin">
+				<i class="iconfont icon-weixin1"></i><br/>
+				免费咨询
+			</div>
+			<div class="Sign-up">
+				<div class="price" align="center">
+					<i class="iconfont icon-yikeappshijiandizhiqianrenyuan76"></i>{{successContent.unit_price/100}}<br/>
+					<span class="prePrice">原价:<i class="iconfont icon-yikeappshijiandizhiqianrenyuan76"></i>599</span><br/>	
+					<span class="Num">限收80人</span>
+				</div>
+				<div class="join-btn" v-show="btn" onclick="order()">
+					立即报名
+				</div>
+				<div class="join-disabled" v-show="!btn" style="display: none;">
+					已报名
+				</div>
+				<!--<div class="join-disabled" v-if="!shopping">
+					立即报名
+				</div>-->
+			</div>
+		</div>
+		<!--问题咨询弹窗-->
+		<div class="emergencybg" style="display: none;" v-show="ShowEmergency" ></div>
+		<div class="emergency" style="display: none;" v-show="ShowEmergency">
+			<div class="close">关闭</div>
+			<div class="title">问题咨询</div>
+			<div class="text">
+				不瘦就出局契约减肥及不瘦学院<br>
+				免费问题咨询微信群
+			</div>
+			<div class="quncode">
+				<img src="../static/images/qun-code.jpg"><br>
+			</div>
+			<div class="phone">
+				周一至周六：9:30~21:00
+			</div>
+			<div class="phone aa">
+				客服：185-1072-8756
+			</div>
+		</div>
+	</body>
+	<link rel="import" href="./common/footer.html?__inline">
+	<script src="../static/js/joinSuccess.js"></script>
+
+</html>

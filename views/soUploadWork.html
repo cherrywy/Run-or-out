@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<link rel="import" href="./common/header.html?__inline">
+		<title>契约打卡</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/soUploadWork.scss">
+		<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	</head>
+
+	<body id="v-Upload-List" v-cloak>
+		<!-- 规则弹窗 -->
+		<div class="pop" v-show="isShow">
+		    <div class="bg" v-on:click="hideRules()"></div>
+			<i class="iconfont icon-iconfontweibiaoti1015" v-on:click="hideRules()"></i>
+			<span class="line"></span>
+			<div class="pop-content" id="pop-content">
+				<div class="title title{{rules[0].image_bg}}" style="">
+					<div class="bg" ></div>
+				<span>{{rules[0].title}}</span>
+				</div>
+				<div class="content">
+					<i class="iconfont {{rules[0].iconName}} font-background" ></i>
+					<div class="txt" v-for="list in rules[0].content">
+						<p><span>Q</span>&nbsp;&nbsp;{{list.question}}</p>
+						<p><span>A</span>&nbsp;&nbsp;{{list.answer}}</p>
+					</div>
+				</div>
+			</div>
+		</div>		
+		<div style="position: absolute;right: 0.3rem; top: 0.15rem;color: #03a9f4; font-size: 12px;z-index: 999;" v-on:click="Question">
+			疑问解答
+		</div>
+		<div class="List-header">
+			<div class="cup">
+				<div class="tubiao flex">
+					<i class="iconfont icon-cup color-f4"></i>
+				</div>
+				<div class="des flex">
+					<span>我的契约计划</span>
+				</div>
+			</div>
+		</div>
+	
+		<div class="List-content">
+			<div class="list" v-for="list in showList">
+				<div class="Content-list">
+					<div class="full bgcolor-active" v-if="list.status=='active'"></div>
+					<div class="full bgcolor-finished" v-if="list.status=='finished'"></div>
+					<div class="full bgcolor-pending" v-if="list.status=='pending'"></div>
+					<div class="left">
+						<div class="name color-96">
+							{{list.name}} 第{{list.cycle_num | change}}期
+						</div>
+						<div class="date color-96">
+							{{list.start_date | dateCheck}}~{{list.finish_date | dateCheck}}
+						</div>
+					</div>
+					<div class="right">
+						<div class="state">
+							<div class="state color-active" v-if="list.status=='active'"><i class="iconfont icon-yuandian color-active"></i> {{list.status | status}}</div>
+							<div class="state color-finished" v-if="list.status=='finished'"><i class="iconfont icon-yuandian color-finished"></i>{{list.status | status}}</div>
+							<div class="state color-pending" v-if="list.status=='pending'"><i class="iconfont icon-yuandian color-pending"></i>{{list.status | status}}</div>
+						</div>
+						<div class="button" id="button">
+							<i class="iconfont icon-xiangxia color-96 iconshow"></i>
+						</div>
+					</div>
+				</div>
+				<div class="Content-detail" v-show="isShow">
+					<div class="left">
+
+					</div>
+					<div class="right">
+						<div class="header">
+							瘦前打卡&nbsp;&nbsp;&nbsp;<span v-show="!list.countdown">{{list.showText}}</span>
+							<span v-show="list.countdown" style="color: #fc4548;">{{list.showCountDown1}}</span>
+						</div>
+						<div class="content">
+							<img style="display: none;" src="" onclick="previewImg()">
+							<div class="content-div upload-work-head all" v-if="list.buttonType1=='1'"  style="background-image: url({{list.img[0]}});background-size: 100% 2.5rem;">
+									<i class="iconfont icon-icon66"></i><br /> 点击上传
+									<br /> 全身照
+									<br />
+							</div>
+							
+							<div class="content-div upload-work-head all" id="preall" v-if="list.buttonType1=='2'"  style="background-image: url({{list.img[0]}});background-size: 100% 2.5rem;">
+								<span class="tag" v-if="list.showBody1">未通过</span>
+									<i class="iconfont icon-icon66"></i><br /> 点击上传
+									<br /> 全身照
+									<br />
+							</div>
+							
+							<div class="content-div upload-work-head all" v-if="list.buttonType1=='3'||list.buttonType1=='4'"  style="background-image: url({{list.img[0]}});background-size: 100% 2.5rem;">
+								
+
+							</div>
+							
+							<div class="content-div href"  v-if="list.buttonType1=='1'"  style="background-image: url({{list.img[1]}});background-size: 100% 2.5rem;"> 
+								<i class="iconfont icon-icon66"></i><br /> 点击上传
+								<br /> 上秤照
+								<br />
+							</div>
+							
+							<div class="content-div href" id="prehalf" v-if="list.buttonType1=='2'"  style="background-image: url({{list.img[1]}});background-size: 100% 2.5rem;">
+								<span class="tag" v-show="list.showScale1">未通过</span>
+								<i class="iconfont icon-icon66"></i><br /> 点击上传
+								<br /> 上秤照
+								<br />
+							</div>
+							
+							<div class="content-div href" v-if="list.buttonType1=='3'||list.buttonType1=='4'" style="background-image: url({{list.img[1]}});background-size: 100% 2.5rem;">
+								<span class="tag" v-show="">未通过</span>
+							</div>
+							
+							<div class="content-div-ope">
+								<div class="opInputDiv">
+									<input type="text" v-model="weight" v-show="!list.showInput1" class="opInput" id="opInput" placeholder="输入体重kg">
+									<input type="text" v-model="weight" v-show="list.showInput1" class="opInput" id="opInput" placeholder="{{list.weight1}}">
+								</div>
+								<!--按钮-->
+								<div class="opBtn">
+									<div v-if="list.buttonType1=='1'" class="nobtn">{{list.buttonType1 | button}}</div>
+									<div v-if="list.buttonType1=='2'" class="btn" onclick="submitSignIn(1,'{{list.team_id}}','{{list._id}}')">{{list.buttonType1 | button}}</div>
+									<div v-if="list.buttonType1=='3'" class="btnpass">{{list.buttonType1 | button}}</div>
+									<div v-if="list.buttonType1=='4'" class="btn">{{list.buttonType1 | button}}</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="header">
+							瘦后打卡&nbsp;&nbsp;&nbsp;<span v-show="!list.finshCountDown">{{list.showText2}}</span>
+							<span v-show="list.finshCountDown" class="countdown" style="color: #fc4548;">{{list.showCountDown}}</span>
+						</div>
+						<div class="content">
+							<div class="content-div all" charset="upload-img"  v-if="list.buttonType2=='1'" style="background-image: url({{list.img1[0]}});background-size: 100% 2.5rem;">
+								<i class="iconfont icon-icon66"></i><br /> 点击上传
+								<br /> 全身照
+								<br />
+							</div>
+							<div class="content-div all" charset="upload-img" id="afterall"  v-if="list.buttonType2=='2'" style="background-image: url({{list.img1[0]}});background-size: 100% 2.5rem;">		
+								<span class="tag" v-show="list.Body2">未通过</span>
+								<i class="iconfont icon-icon66"></i><br /> 点击上传
+								<br /> 全身照
+								<br />
+							</div>
+							<div class="content-div all" charset="upload-img"  v-if="list.buttonType2=='3'||list.buttonType2=='4'" style="background-image: url({{list.img1[0]}});background-size: 100% 2.5rem;">
+								
+							</div>
+							<div class="content-div href" v-if="list.buttonType2=='1'" style="background-image: url({{list.img1[1]}});background-size: 100% 2.5rem;">
+								<!--不能提交的情况，有两种情况，一种是还没到时间，一种是时间过了-->
+								<i class="iconfont icon-icon66"  ></i><br /> 点击上传
+								<br /> 上秤照
+								<br />
+							</div>
+							<div class="content-div href" id="afterhalf" v-if="list.buttonType2=='2'" style="background-image: url({{list.img1[1]}});background-size: 100% 2.5rem;">
+								<!--当前可以提交的情况，所以应该显示的是默认的背景图片-->
+								<span class="tag" v-show="list.showScale2">未通过</span>
+								<i class="iconfont icon-icon66" id="afterhalf" ></i><br /> 点击上传
+								<br /> 上秤照
+								<br />
+							</div>
+							<div class="content-div href" v-if="list.buttonType2=='3'||list.buttonType2=='4'" style="background-image: url({{list.img1[1]}});background-size: 100% 2.5rem;">
+								<!--审核通过，正在审核的情况，此处应该加提交的图片-->
+							</div>
+							<div class="content-div-ope">
+								<div class="opInputDiv">
+									<input type="text"  class="opInput" v-show="!list.showInput2" id="opInput1" placeholder="输入体重kg">
+									<input type="text"  class="opInput" v-show="list.showInput2" id="opInput1" placeholder="{{list.weight2}}">
+								</div>
+								<!--按钮-->
+								<div class="opBtn">
+									<div v-if="list.buttonType2=='1'" class="nobtn">{{list.buttonType2 | button}}</div>
+									<div v-if="list.buttonType2=='2'" class="btn">{{list.buttonType | button}}</div>
+									<div v-if="list.buttonType2=='3'" class="btnpass">{{list.buttonType2 | button}}</div>
+									<div v-if="list.buttonType2=='4'" class="btn">{{list.buttonType2 | button}}</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="header">
+							<i class="iconfont icon-tishi"></i>
+							体重我们会为您保密，请放心提交
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+</html>
+<link rel="import" href="./common/footer.html?__inline">
+<script type="text/javascript" src="../static/js/soUploadWork.js"></script>

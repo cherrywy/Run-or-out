@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>支付弹窗</title>
+		<link rel="import" href="./common/header.html?__inline">
+		<link rel="stylesheet" type="text/css" href="../static/css/soPay.scss"/>
+	</head>
+	<body id="so-v-pay">
+		<div class="all-content">
+			
+		</div>
+		<div class="pay-content bgcolor-white">
+			<div class="pay-list pay-flex">
+				<span>报名期数</span>
+				<div class="week">
+					<i class="iconfont icon-jianhao"></i>
+					<span id="weekNum">{{weekNum}}期</span>&nbsp;&nbsp;
+					<i class="iconfont icon-jiahao"></i>&nbsp;
+				</div>
+			</div>
+			<div class="pay-list pay-flex tel-num">
+				<span>联系手机</span>
+				<div class="week">
+					<!--<input id="tel" class="text-input vertical-middle" type="text" placeholder="点击输入" maxlength="11" v-model="user.mobile" v-on:click="showInput">-->
+						<a id="tel" v-on:click="showInput()">{{telphone}}</a>
+				</div>
+			</div>
+			<div class="pay-list pay-flex pay-pay">
+				<span>支付契约金</span>
+				<div class="week money">
+					<div class="total"><i class="iconfont icon-yikeappshijiandizhiqianrenyuan76"></i>
+						{{totalMoney}}
+					</div>
+				</div>
+			</div>
+			<div class="dikou">
+				<i class="iconfont icon-fangxingxuanzhongfill color-blue iconclick"></i>余额抵扣{{discountMoney}}元
+			</div>
+			<div class="pay-div">
+				<div class="btn">{{payBtn}}</div>
+				<div class="rule">报名即同意<a href="http://mp.weixin.qq.com/s/6bxhzvj55rjh2iXtT8z0wA">用户协议</a></div>
+			</div>
+		</div>
+		
+		<div class="inputTel" v-if="inputShow==true">
+			<div class="inputDIV">
+				<input type="tel" placeholder="点击输入11位数字" v-model="telphone" maxlength="11"  required>
+			</div>
+			<div class="btnDIV">
+				<div class="btn" v-on:click="save()">保存</div>
+			</div>
+		</div>
+	</body>
+	<link rel="import" href="./common/footer.html?__inline">
+	<script src="../static/js/soPay.js"></script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>提醒设置</title>
+<link rel="import" href="./common/header.html?__inline">
+<link href="../static/css/mobiscroll.css" rel="stylesheet" />
+<link href="../static/css/mobiscroll_date.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../static/css/remindSetting.scss">
+</head>
+
+<body id="v-remind-set">
+	<div class="tixing-shezhi">
+		<div class="tixing-tubiao">
+			<i class="iconfont icon-iconfont72 bluecolor"></i>
+		</div>
+		<div class="text color-96">
+				打卡提醒			
+		</div>
+		<div class="tixing-des color-96">
+			健康饮食，规律运动有益于瘦身，你可自定义微信号<br/>
+			提醒你每日打卡时间
+		</div>
+	</div>
+	
+	<div class="tixing bgcolor-white" id="tixing">
+		<div class="duihaoDIV">
+			<i class="iconfont icon-duihao bluecolor" v-show="showTime"></i>
+		</div>
+		<div class="tixing-content clickshow">
+			<span class="text">提醒时间</span>
+			<div class="timeSet">
+				<span v-show="showTime" class="normal-menu-sub-title sub-value">{{alertTime | reverseTime}}</span>
+				<i v-show="showTime" class="iconfont icon-webxuanzexiangmuicon01 bluecolor"></i>
+				<input type="text" value="{{alertTime | reverseTime}}" style="opacity: 0;" name="choose-time-hide" id="choose-time-hide" readonly>
+			</div>
+			
+		</div>		
+	</div>
+	<div class="tixing bgcolor-white" id="butixing">
+		<div class="duihaoDIV">
+			<i class="iconfont icon-duihao bluecolor" v-show="!showTime"></i>			
+		</div>
+		<div class="tixing-content">
+			<span>不提醒</span>	
+		</div>
+		
+	</div>
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.1-rc1/jquery.min.js"></script>
+<link rel="import" href="./common/footer.html?__inline">
+<script src="../static/js/mobiscroll_date.js"></script> 
+<script src="../static/js/mobiscroll.js"></script> 
+<script type="text/javascript" src="../static/js/remindSetting.js"></script>
+</html>
+

@@ -1,0 +1,93 @@
+*{
+    font-family: "微软雅黑";
+}
+.bg-content{
+    width: 100%;
+    height: 100vh;
+    background-color: #101010;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    z-index: 10;
+}
+.content{
+    width: 100%;
+      .content-div{
+        position: fixed;
+        width: 90%;
+        height: 4.4rem;
+        top: 20vh;
+        background-color: #FFFFFF;
+        z-index: 100;
+        margin-left: 5%;
+        border-radius: 0.2rem;
+        .div-header{
+            border-radius: 0.2rem 0.2rem 0  0;
+            height: 1.2rem;
+            background-color: #29b6f6;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.2rem;
+        };
+        .div-content{
+            .div-money{
+               height: 1rem;
+               line-height: 1rem;
+               width: 100%;
+               padding-left: 0.3rem;
+               padding-right: 0.3rem;
+               display: box;
+               display: -webkit-box;
+                .text{
+                    color: #969696;
+                    -webkit-box-flex: 1;
+                    box-flex: 1;
+                };
+                .balance{
+                    color: #03a9f4;
+                    -webkit-box-flex: 1;
+                    box-flex: 1;
+                    text-align: right;
+                    display: block;     
+                }
+            };
+            .div-input{
+                height: 1.2rem;
+                line-height: 1.2rem;
+                padding: 0 0.3rem 0 0.3rem;
+                input{
+                    width: 100%;
+                    height: 1rem;
+                    border: none;
+                    color: #969696;
+                    text-align: center;
+                    background-color: #fafafa;
+                }
+            };
+        };
+        .div-footer{
+           height: 1.2rem;
+           line-height: 1.2rem;
+           display: box;
+           display: -webkit-box;
+           .cancel{
+               -webkit-box-flex: 1;
+                box-flex: 1;
+                .btn{
+                    background-color: #FFFFFF;
+                    color: #969696;
+                } 
+           }
+           .sure{
+                -webkit-box-flex: 1;
+                box-flex: 1;
+                .btn{
+                   background-color: #FFFFFF;
+                    color: #03a9f4; 
+                }
+           }
+        }
+    }  
+}
+

@@ -1,0 +1,140 @@
+@import "../components/navigation/navigation.scss";
+
+*{
+    font-family: "微软雅黑";
+    margin: 0;
+    padding: 0;
+}
+.flex{
+    display: -webkit-box;
+    display: box;
+}
+.flex-item-op{
+    -webkit-box-flex: 1;
+    box-flex:1; 
+}
+.flex-center{
+    display: -webkit-box;
+    display: box;
+    justify-content: center;
+    align-items: center; 
+}
+.icon-rili{
+    font-size: 37px;
+    color: #c8c8c8;
+}
+.icon-flagcheckered{
+    font-size: 37px;
+    color: #c8c8c8;
+}
+.header-center{
+    height: 1.6rem;
+    line-height: 1.6rem;
+    width: 100%;
+    .name{
+        padding-left: 0.4rem;
+        font-size: 15px;
+        color: #101010;
+    }
+    .img{
+      padding-top: 0.2rem;
+      padding-right: 0.2rem; 
+    }
+    .img img{
+        width:1.2rem;
+        height: 1.2rem;
+        border-radius: 1rem;
+    } 
+}
+.content-center{
+    height: 8rem;
+    margin-top: 0.2rem;
+    .plan-title{
+        padding-left: 0.4rem;
+        height: 0.8rem;
+        line-height: 0.8rem;
+    }
+    .plan-content{
+        height: 1.8rem;
+        .qiyue-class{
+            flex-wrap: wrap;
+            .item{
+                width: 100%;
+                text-align: center;
+                font-size: 9px;
+            }
+            .font{
+                color: #969696;
+            }
+            .color-c8{
+                color: #c8c8c8;
+            }
+           
+        }
+        .bushouxueyuan{
+            .item{
+                width: 100%;
+                text-align: center;
+                font-size: 9px;
+            } 
+            .font{
+                color: #969696;
+            }
+            .color-c8{
+                color:#c8c8c8;
+            }
+        } 
+    }
+    .plan-list{
+        height: 1.35rem;
+        line-height: 1.35rem;
+        border-top: 1px #dcdcdc solid;
+        padding-left: 0.2rem;
+        
+        i{
+            color: #c8c8c8;
+            font-size: 12px;
+            float: right;
+            margin-right: 0.2rem;
+        }
+    }
+}
+
+.mask{
+    background-color: #101010;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    width: 100%;
+    height: 100vh;
+    position:fixed;
+    z-index: 10;
+}
+.download{
+    text-align: center;
+    background-color: #FFFFFF;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 15;
+    .text{
+        color: #969696;
+        font-size: 12px;
+        height: 1rem;
+        width: 100%;
+        line-height: 1rem;
+    };
+    .school{
+      height: 1rem;
+      line-height: 1rem;
+      background-color: #03a9f4;
+      width: 95%;
+      margin-left: 2.5%;
+      color: #FFFFFF;
+      margin-bottom: 0.2rem; 
+      border-radius: 4px; 
+    };
+    .btn{
+        background-color: #FFFFFF;
+        color: #03a9f4;
+    }
+}

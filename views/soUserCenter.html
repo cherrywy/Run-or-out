@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>个人中心</title>
+		<link rel="import" href="./common/header.html?__inline">
+		<link rel="stylesheet" type="text/css" href="../static/css/userCenter.scss">
+		<script src=" https://res.wx.qq.com/open/js/jweixin-1.0.0.js "></script>
+	</head>
+
+	<body id="userCenter-v" v-cloak>
+		
+		<div class="mask" v-show="invited"></div>
+		<div class="download" align="center" v-show="invited">
+			<div class="text">请选择你要分享的邀请卡</div>
+			<div class="school" onclick="getSchoolInvited()">不瘦学院邀请卡&nbsp;&nbsp;&nbsp;<i class="iconfont icon-xiazai"></i></div>
+			<div class="school" onclick="getClassInvited()">契约瘦身邀请卡&nbsp;&nbsp;&nbsp;<i class="iconfont icon-xiazai"></i></div>
+			<div class="btn" onclick="invitedcancel()">取消</div>
+		</div>
+		
+		
+		<div class="header-center bgcolor-white flex">
+			<div class="name flex-item-op flex-center">
+				{{user.nickname}}
+			</div>
+			<div class="img flex-item-op flex-center" align="right">
+				<!--<img src="../static/images/tudemo.jpg">-->
+				<div class="avatar" style="background-image: url({{user.avatar}})"></div>
+			</div>
+		</div>
+		<div class="content-center bgcolor-white">
+			<div class="plan-title">
+				我的计划
+			</div>
+			<div class="plan-content flex">
+				<div class="flex-item-op qiyue-class">
+					<div class="item font">契约班级</div>
+                   <!-- <span class="warning">1</span>-->
+					<div class="item"><i class="iconfont icon-rili"></i></div>
+					<div class="item color-blue">{{classState}}</div>
+
+				</div>
+				<div class="flex-item-op bushouxueyuan">
+					<div class="item font">不瘦学院</div>
+					<div class="item"><i class="iconfont icon-flagcheckered"></i></div>
+					<div class="item color-blue">{{schoolJoin | state}}</div>
+				</div>
+			</div>
+			<!--list-->
+			<div class="plan-list" v-on:click="myAccount()">
+				<span>我的账户</span>
+				<div class="right">
+					<i class="iconfont icon-xiangyou"></i>
+				</div>
+			</div>
+		<!--	<div class="plan-list" v-on:click="remindSetting()">
+				<span>打卡提醒</span>
+				<div class="right">
+					<i class="iconfont icon-xiangyou"></i>
+				</div>
+			</div>-->
+			<!--<div class="plan-list" v-on:click="inviteFriend()">
+				<span>邀请好友</span>
+				<div class="right">
+					<div >专属邀请卡</div>
+					<i class="iconfont icon-xiangyou"></i>		
+				</div>
+			</div>-->
+			<div class="plan-list" v-on:click="emergency()">
+				<span>问题咨询</span>
+				<div class="right">
+					<i class="iconfont icon-xiangyou"></i>
+				</div>
+			</div>
+		</div>
+			
+		</div>
+
+		<xo-navigation />
+	</body>
+	<link rel="import" href="./common/footer.html?__inline">
+
+</html>
+<script type="text/javascript" src="//cdn.bootcss.com/vuex/1.0.0/vuex.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/vue-resource/1.0.3/vue-resource.min.js"></script>
+<script type="text/javascript" src="../static/js/soUserCenter.js"></script>

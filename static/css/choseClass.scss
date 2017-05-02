@@ -1,0 +1,305 @@
+@import "../components/navigation/navigation.scss";
+
+#chose-class-v{
+    background-color:#efeff4;
+	.chose-class.header{
+   		background-color: #fff;
+		display: flex;
+		margin: .22rem .08rem;
+		height: 2.52rem;
+		text-align: center;
+		align-items: center;
+		border-radius: 0.08rem;
+		div:first-child{
+			position:absolute;
+			top:0;
+			left:4.86rem;
+			width:1.2rem;
+			height:0.4rem;
+			background-color:#03a9f4;
+			font-size:0.22rem;
+			color:#fff;
+			line-height:0.4rem;
+		}
+		.rulePlay{
+	       width: 100%; 
+	       margin-top: 0.5rem;
+		   ul li{
+			  display:inline-block;
+			  width:30%;
+			  img{
+			  	    width: 0.8rem;
+    				height: 0.8rem;
+			  }
+			  i:first-child{
+					font-size:0.36rem;
+					color:#c8c8c8;
+				}
+			  p{
+					color:#c8c8c8;
+					font-size:0.26rem;
+					line-height:0.5rem;
+			    }
+			   i:last-child{
+					color:#29b6f6;
+					opacity:0.4;
+					font-size: 0.25rem;
+				}	
+			}	
+	    }
+	}
+	.pop{
+		-webkit-user-select:none;
+		// display:none;
+		position:fixed;
+		width:100%;
+		height:100%;
+		text-align:center;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		z-index:999;
+		background:rgba(#444444,0.5);
+		padding-top:1.56rem;
+		.bg{
+			position: absolute;
+			left:0;
+			top:0;
+			right:0;
+			bottom:0;
+			background: rgba(#101010,0.62);
+				
+			
+	    }
+		.icon-iconfontweibiaoti1015{
+			position:absolute;
+			top:0.78rem;
+			left:5.34rem;
+			font-size:0.36rem;
+			color:#eee;
+
+		}
+		.line{
+			position:absolute;
+			top: 1.13rem;
+			left:5.52rem;
+			height:0.46rem;
+			border-left: 1px solid #fff;
+		}
+		.font-background{
+			position:absolute;
+			// top:2rem;
+			right:0.2rem;
+			font-size:0.8rem;
+			color:#03a9f4;
+			opacity: 0.1;
+
+		}
+		.pop-content{
+			background-color: #fff;
+			height:7.24rem;
+			width:5.6rem;
+			margin:0 auto;
+			border-radius: 0.1rem;
+			border-top-left-radius: 0.1rem;
+			border-top-right-radius: 0.1rem;
+
+			.title{
+				height:1.3rem;
+				width:100%;
+				margin:0 auto;
+				border-top-left-radius: 0.1rem;
+			    border-top-right-radius: 0.1rem;
+				line-height:1.3rem;
+				color:#ffffff;
+				font-size:0.5rem;
+				.bg{
+					position: absolute;
+					left:0;
+					top:0;
+					right:0;
+					bottom:0;
+					background: rgba(#101010,0.62);
+					border-top-left-radius: 0.1rem;
+			        border-top-right-radius: 0.1rem;
+			    }
+			    span{
+					    color: #fff;
+					    font-size: .5rem;
+					    vertical-align: middle;
+			    }
+			 	&.title1{
+			 		background:url('../images/yaqian_bg.jpg') no-repeat center;background-size: cover;
+			 	}
+			 	&.title2{
+			 		background:url('../images/yaqian_bg.jpg') no-repeat center;background-size: cover;
+			 	}
+			 	&.title3{
+			 		background:url('../images/yaqian_bg.jpg') no-repeat center;background-size: cover;
+			 	}
+			}
+			//滚动条样式
+			.content::-webkit-scrollbar {
+                width:2px;
+                -webkit-overflow-scrolling: touch;
+            }
+			.content::-webkit-scrollbar-thumb {
+                background:rgba(#29b6f6,0.21);
+            }
+			.content{
+				text-align: left;
+				height:5.94rem;
+				width:100%;
+				overflow-y: auto;
+				.txt:nth-child(2n-1){
+                 background-color:rgb(250,250,250);
+				}
+				.txt{
+					    padding-top: .2rem;
+					    padding-bottom: .1rem;
+					    padding-left: 0.2rem;
+					    padding-right: 0.1rem;
+					p{
+						color:#969696;
+					}
+					span{
+						color:#29b6f6;
+					}
+					p:first-child,p:first-child span{
+						font-size:0.26rem;
+						line-height:0.38rem;
+						margin-bottom:0.2rem;
+					}
+					p:last-child,p:last-child span{
+						font-size:0.2rem;
+						line-height:0.3rem;
+						margin-bottom:0.1rem;
+					}
+				}
+			}
+			
+		}
+
+	}
+	.chose-class-list {
+	    display: -webkit-box;
+	    margin-top: 0;
+	    min-height: 1.8rem;
+	    background-color: #FFF;
+		margin: 0 0.08rem;
+		margin-bottom: 0.1rem;
+		padding: 0.2rem 0.1rem 0.2rem 0.2rem;
+		text-decoration: none;
+		border-radius: 0.08rem;
+		.list-avatar {
+      		 width: 1.76rem;
+			 height: 1.22rem;
+      		.head-img {
+			    width: 100%;
+			    height: 100%;
+			    position: absolute;
+			    border-radius: 0.08rem;
+			    /* top: 3.26rem; */
+			    /* left: 4.42rem; */
+			    /* border-radius: .8rem; */
+			}
+		}
+		.list-content {
+		    -webkit-box-flex: 1;
+		    box-flex: 1;
+		    // padding-left: .8rem;
+		    .tags-info {
+			    color: #fff;
+			    font-size:0.18rem;
+			    margin-top: .06rem;
+			    line-height:0.4rem;
+			    padding:0.05rem 0.1rem;
+			    height:0.4rem;
+			    background:#c8c8c8;
+			    border-radius: 0.04rem;
+			    &.going{
+			      background:#03a9f4;
+			    }
+			}
+		    .name-line {
+			    max-width: 10rem;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			    -o-text-overflow: ellipsis;
+			    overflow: hidden;
+			    font-size:0.28rem;
+			    color:#101010;
+			}
+			 .rules-in .rule:first-child{
+					color: #29b6f6;
+					font-size:0.28rem;
+					margin-right: .1rem;
+				}
+			  .rules-out p:first-child span{
+			  	   color: #29b6f6;
+					font-size:0.28rem;
+			  }
+			.rules {
+			    margin-top: .06rem;
+			    height: auto;
+			    display: block;
+			   .rule {
+				    color: #969696;
+				    padding: .1rem 0rem;
+				    display: inline-block;
+				    text-align: center;
+				    font-size:0.22rem;
+				}
+			    .iconfont {
+				       font-size: .2rem;
+					    color:#c8c8c8;
+				}
+				.rule-line{
+					margin:0 0.1rem;
+					
+				}
+			   
+			}
+			.rules-out .rule-block {
+			    margin-bottom: .05rem;
+			    display: inline-block;
+			    margin-right:0.1rem;
+			    &.icon{
+			    	vertical-align: top;
+			    }
+			    p{
+			    	 color: #969696;
+				    padding: .1rem 0rem;
+				    font-size:0.22rem;
+			    } 
+			    .money-sp{
+			   		 color: #29b6f6;
+					font-size:0.28rem;
+			    }
+			    .iconfont {
+				       font-size: .2rem;
+					    color:#c8c8c8;
+					    // // position: absolute;
+					    // left: 3rem;
+					    // top: -1rem;
+				}
+				.icon-shouqi{
+					color: #29b6f6;
+					top: 0.05rem;
+				}
+			}
+
+		}
+		.list-people {
+		    text-align: right;
+		    margin-right:0.1rem;
+		    height: 1.22rem;
+            #join-number {
+			    color: #969696;
+			    font-size: 0.26rem;
+			}
+		}
+	}
+        
+} 

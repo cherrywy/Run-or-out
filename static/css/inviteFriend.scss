@@ -1,0 +1,44 @@
+*{
+    font-family: "微软雅黑";
+}
+.content{
+    width: 100%;
+    height: 4rem;
+    background-color: #FFFFFF;
+    .top{
+        display: -webkit-box;
+        display: box;
+        height: 3rem;
+        padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+        .right-div{
+            width: 2rem;
+            .text{
+                color: #c8c8c8;
+            }
+            .peoNum{
+                color: #03a9f4;
+                font-size: 30px;
+                text-align: right;
+                span{
+                    color: #969696;
+                }
+            }
+        };
+        .img-div{
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            padding:0.2rem 0.5rem;
+            div{
+                height: 2rem;
+            } 
+        };
+    }
+    .remark{
+        color: #969696;
+        text-align: center;
+        padding: 0 0.6rem 0 0.6rem;
+        span{
+            color: #03a9f4;
+        }
+    }
+}

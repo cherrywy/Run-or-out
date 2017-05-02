@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="import" href="./common/header.html?__inline">
+		<link rel="stylesheet" type="text/css" href="../static/css/detailClass.scss">
+		<link rel="stylesheet" type="text/css" href="../static/css/soPay.scss"/>
+		<script src=" https://res.wx.qq.com/open/js/jweixin-1.0.0.js "></script>
+		<title>班级主页 - 不瘦就出局</title>
+	</head>
+	<body id="detail-class-v" v-cloak>
+		
+		<div class="all-content" v-show="registration">
+			
+		</div>
+		
+		<div class="inputTel" v-if="inputShow==true">
+			<div class="inputDIV">
+				<input type="tel" placeholder="点击输入11位数字" v-model="telphone" maxlength="11"  required>
+			</div>
+			<div class="btnDIV">
+				<div class="btn" v-on:click="save()">保存</div>
+			</div>
+		</div>
+		
+		<div class="myself-class header">
+			<ul class="flex">
+				<li class="flex-item type {{type=='0'?'active':''}}" v-on:click="showTab(0)">班级动态</li>
+				<li class="flex-item type {{type=='1'?'active':''}}"  v-on:click="showTab(1)">我的动态</li>
+				<!-- <li class="flex-item type {{type=='2
+				'?'active':''}}"  v-on:click="showTab(2)">上期瘦身榜</li> -->
+			</ul>
+		</div>
+		<!-- 分享班级 -->
+		<!--	<div id="shareit" style="display: none;">
+				<div class="bg"></div>
+				<div class="share-head">
+							<p class="text-blue">分享班级主页 </p>
+							<img class="arrow" src="../static/images/share.png">
+							<span class="line-text">或</span><div class="line"></div>
+				</div>
+				<div class="share-bottom">
+							<p class="text-blue">分享邀请卡邀请 </p>
+							<a class="btn-link" v-on:click="showInvite()">点击下载邀请卡</a>
+							<a class="btn-close">关闭</a>
+				</div>
+		</div>-->
+		<!-- 打卡页面 -->
+		<div id="logit" style="display: none;"  >
+			<div class="bg"></div>
+			<div class="share-head" >
+				<div id="share-text" class="text">
+					<input type="number" id="my-weight" placeholder="今日体重" v-model="weight" min="0" max="350" />
+					<div class="line-short"></div>
+					<span>Kg</span>
+					<a class="btn-link"  v-show="weight.length==0&&textarea.length==0&&imgSrc.length==0">发送</a>
+					<a class="btn-link active"  v-show="weight.length!=0||textarea.length!=0||imgSrc.length!=0"  v-on:click="submitSignIn()">发送</a>
+				</div>
+				<div class="line"></div>
+			</div>
+			<div class="share-bottom">
+				<form action="" method="post">
+					<textarea  name="emotion-word" id="emotion-word" v-model="textarea" placeholder="晒美食、晒运动、晒自拍！" maxlength="140" ></textarea>
+				</form>
+				<span  class ="count-number">
+					{{140-textarea.length}}/140
+				</span>
+				<div class="upload-work-head" >
+					<div charset="upload-img" class="img-block">
+						<div  v-for="url in imgSrc" track-by="$index">
+							<img  class="emotion-img img-srcs"  v-bind:src="url"  onclick="previewImg('{{url}}')"/>
+							<i  class="iconfont icon-iconfontweibiaoti1015" onclick="removeImg('{{url}}')"></i>
+						</div>
+						<div class="choose-img"  v-show="imgSrc.length<4" onclick="chooseImg()"><i class="iconfont icon-shizi"></i></div>
+						
+					</div>
+				</div>
+				<span class="final-tell"><i class="iconfont icon-tishi"></i>体重我们会为你保密，请放心填写。</span>
+			</div>
+		</div>
+		<div class="main-body" >
+			<!-- 班级动态 start-->
+			<div class="myself-class body" id="myself-class"  v-show="body[type].className=='myself-class'" style="margin-bottom: 2rem;">
+				<!-- 你暂时还未加入班级，无班级动态 -->
+				<div class="myself" v-show="!applyClass">
+					<div class="block">
+						<i class="iconfont icon-menu-a"></i>
+						<p class="unshow">你暂时还未加入班级，无班级动态</p>
+						<a class="chose" href="/page/team/list">去选个班</a>
+					</div>
+				</div>
+				<div class="myself" v-show="applyClass" >
+					<div class="myself-block">
+						<div class="avatar">
+							<div class="head-img"  style="background: url({{classInfo.avatar| imgList '-w300h210'}}) no-repeat center;background-size: cover;"></div>
+						</div>
+						<div class="content">
+							<div class="content-name name-line">{{classInfo.name}}</div>
+							<span class="text rules rules-in  iconshow">
+								<span class="rule">{{classInfo.cycle_duration/7}}周</span>
+								<span class="rule-line rule">|</span>
+								<span class="rule">减重{{classInfo.target/10}}%</span>
+								<i class="iconfont icon-webicon215"></i>
+							</span>
+							<span class="text rules rules-out  iconshow"  style="display: none">
+								<p><span class="rule">{{classInfo.cycle_duration/7}}周</span>每期瘦身时长</p>
+								<p><span class="rule">减重{{classInfo.target/10}}%</span>每期减重目标</p>
+								<p><span class="rule money-number ">￥{{classInfo.money/100}}</span>每期押契约金</p>
+								<i class="iconfont icon-shouqi"></i>
+							</span>
+						</div>
+						<div class="people">
+							<span  id="money-number">￥{{classInfo.money/100}}</span>
+						</div>
+					</div>
+					<div class="myself-block">
+						<i class="iconfont icon-shijian"></i>
+						<span class="time">
+							<p  >第{{zhouqi}}期 &nbsp;{{teamCycle.start_date | teamCycleDate}}~{{newfinsh_date | teamCycleDate}}</p>
+							<p  >第{{nextzhouqi}}期 &nbsp;{{nextteamCycleStart_date | teamCycleDate}}~{{newnextfinsh_date | teamCycleDate}}</p>
+						</span>
+						<p class="share-fx"><!--<i class="iconfont icon-fenxiang01"></i>--></p>
+					</div>
+					<div class="myself-block flex">
+						<div class="flex-item">
+							<div class="join-people" >
+								<div class="head-img" v-if="$index<7" v-for="list in classInfoWall" style="background:url({{list.avatar| imgList '-w300h210'}}) no-repeat center;background-size: cover;"></div>
+							</div>
+						</div>
+						<span>{{classInfoWall.length}}人已报名</span>
+					</div>
+					<div class="class-block">
+						<div class="flex">
+							<span class="flex-item" >
+								<a class="btn" v-show="canBm&&!isNext&&!canBmself&&!canotBm" onclick="payParticity()">报名第{{zhouqi}}期</a>
+								<a class="btn" v-show="isNext&&!canotBm&&!canBmself" onclick="payParticity()">已报名第{{zhouqi}}期报名第{{nextzhouqi}}期</a>
+								<a class="btn" v-show="canBmself"  style="background:#c8c8c8">已报名</a>
+								<a class="btn" style="background:#c8c8c8" v-show="canotBm&&!canBmself" >不可报名</a>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="friend"  v-for="item in ClassownList">
+					<div class="friend-block">
+						<div class="head-img" style="background:url({{item.avatar|headImg}}) no-repeat center;background-size: cover;"></div>
+						<span class="name">{{item.nickname}}</span>
+						
+					</div>
+					<p class="emotion-word">{{item .content}}</p>
+					<div class="friend-block" v-if="item.img && item.img.length!=0" >
+						<div  v-for="url in item.img">
+							
+							<div class="emotion-img" style="background:url({{url}}) no-repeat center;background-size: cover;" onclick="previewLacalImg('{{url}}','{{item.img}}')" ></div>
+						</div>
+					</div>
+					<div class="friend-block" style="height:0.3rem" >
+						<p class="share-fx"><i class="iconfont icon-lajixiang"  v-on:click="cancelOwnList($index,ClassownList)" v-show="ClassOwn._id==item.uid"></i></p>
+						<span class="favor" v-on:click="favor($index,ClassownList)">
+						<i class="iconfont icon-heart"   v-bind:class="item.thumb_up?'favorited':''"></i>{{item.thumb_num|thumbNum}}</span>
+					</div>
+				</div>
+				<div class="camera1" v-show="canBmself"><i class="iconfont icon-xiangji1"></i></div>
+			</div>
+			
+			<!-- <我的动态 -->
+			<div class="myself-log body"  id="myself-log"  v-show="body[type].className=='myself-log'">
+				<div class="log" v-if="ownList.length==0||ownList==null" >
+					<div class="block">
+						<i class="iconfont icon-yinhao-copy-copy"></i>
+						<p class="unshow">你还未发送任何动态，点击右下角打卡</p>
+					</div>
+				</div>
+				<div class="log" v-show="ownList.length!=0&&ownList!=null" style="margin-bottom: 2rem;">
+					<div class="log-list" v-for="list in ownList" >
+						<div class="log-block" >
+							<div class="head-img" style="background:url({{ownListUser.avatar|headImg}}) no-repeat center;background-size: cover;"></div>
+							<span class="name">{{ownListUser.nickname}}</span>
+							<span class="time">{{list.created_at|getTimeDiff }}</span>
+						</div>
+						
+						<p class="emotion-word">{{list.content}}</p>
+						<div class="log-block" v-if="list.img && list.img.length!=0" >
+							<div  v-for="url in list.img" v-show="list.img.length==1" >
+								
+								<div class="emotion-img" style="background:url({{url}}) no-repeat center;background-size: contain;" onclick="previewLacalImg('{{url}}','{{list.img}}')" ></div>
+								
+							</div>
+							<div  v-for="url in list.img" v-show="list.img.length>1" >
+								<div v-show="list.img.length>1" class="emotion-img" style="background:url({{url}}) no-repeat center;background-size: cover;" onclick="previewLacalImg('{{url}}','{{list.img}}')" ></div>
+								
+							</div>
+						</div>
+						<div class="log-block" style="height:0.3rem" >
+							<span class="favor1"><i class="iconfont icon-lajixiang"  v-on:click="cancelOwnList($index,ownList)" ></i></span>
+							<span class="favor" v-on:click="favor($index,ownList)">
+							<i class="iconfont icon-heart"    v-bind:class="list.thumb_up?'favorited':''"></i>{{list.thumb_num|thumbNum}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="camera"><i class="iconfont icon-xiangji1"></i></div>
+			</div>
+			<!-- 上期瘦身榜 start -->
+			<div class="soRankList-class body" id="soRankList-class"  v-show="body[type].className=='soRankList-class'">
+				<!-- 你暂时还未加入班级，无班级动态 -->
+				<div class="rank-list-body" v-show="!applyClass">
+					<div class="block">
+						<i class="iconfont icon-athit-iconfont-rank-1"></i>
+						<p class="unshow">需先加入班级才有瘦身榜</p>
+						<a class="chose">去选个班</a>
+					</div>
+				</div>
+				<div class="rank-list-body" v-show="applyClass">
+					<div class="rank-list-item">
+						<!-- <i v-if="$index<3" class="icons icon_{{ $index+1 }}">1</i><span v-else>{{$index+1}}</span> -->
+						<span class="rank-index vertical-middle"><i class="iconfont icon-athit-iconfont-rank-1"></i>
+						</span>
+						<div class="head-img" style="background:url(../static/images/tudemo.jpg) no-repeat center;background-size: cover;"></div>
+						<span class="user-info">呆呆</span>
+						<span class="weight"><span class="reduce">-9.0</span>斤</span>
+					</div>
+					<div class="rank-list-item">
+						<!-- <i v-if="$index<3" class="icons icon_{{ $index+1 }}">1</i><span v-else>{{$index+1}}</span> -->
+						<span class="rank-index vertical-middle"><i class="iconfont icon-athit-iconfont-rank-2"></i>
+						</span>
+						<div class="head-img" style="background:url(../static/images/tudemo.jpg) no-repeat center;background-size: cover;"></div>
+						<span class="user-info">呆呆</span>
+						<span class="weight"><span class="reduce">-9.0</span>斤</span>
+					</div>
+					<div class="rank-list-item">
+						<!-- <i v-if="$index<3" class="icons icon_{{ $index+1 }}">1</i><span v-else>{{$index+1}}</span> -->
+						<span class="rank-index vertical-middle"><i class="iconfont icon-athit-iconfont-rank-3"></i>
+						</span>
+						<div class="head-img" style="background:url(../static/images/tudemo.jpg) no-repeat center;background-size: cover;"></div>
+						<span class="user-info">呆呆</span>
+						<span class="weight"><span class="reduce">-9.0</span>斤</span>
+					</div>
+				</div>
+			</div>
+			<!-- 上期瘦身榜 end-->
+		</div>
+		
+		
+		
+		
+		
+		<!--
+		作者：18875010716@163.com
+		时间：2017-01-13
+		描述：支付
+		-->
+		
+		<div class="pay-content bgcolor-white" v-show="registration">
+			<!--<div class="pay-list pay-flex">
+						<span>报名期数</span>
+						<div class="week">
+									<i class="iconfont icon-jianhao"></i>
+									<span id="weekNum">{{weekNum}}期</span>&nbsp;&nbsp;
+									<i class="iconfont icon-jiahao"></i>&nbsp;
+						</div>
+			</div>-->
+			<div class="pay-list pay-flex tel-num">
+				<span>联系手机<i class="iconfont icon-mi color-blue"></i></span>
+				<div class="week">
+					<!--<input id="tel" class="text-input vertical-middle" type="text" placeholder="点击输入" maxlength="11" v-model="user.mobile" v-on:click="showInput">-->
+					<a id="tel" v-on:click="showInput()">{{telphone}}</a>
+				</div>
+			</div>
+			<div class="pay-list pay-flex pay-pay">
+				<span>支付契约金</span>
+				<div class="week money">
+					<div class="total"><i class="iconfont icon-yikeappshijiandizhiqianrenyuan76"></i>
+						{{totalMoney}}
+					</div>
+				</div>
+			</div>
+			<div class="dikou">
+				<i class="iconfont icon-fangxingxuanzhongfill color-blue iconclick"></i>余额抵扣{{discountMoney}}元
+			</div>
+			<div class="pay-div">
+				<div class="btn" onclick="getOrderId()">{{payBtn}}</div>
+				<div class="rule">报名即同意<a href="http://mp.weixin.qq.com/s/6bxhzvj55rjh2iXtT8z0wA" onclick="MtaH5.clickStat('detailclassagreement');">用户协议</a></div>
+			</div>
+		</div>
+		
+		<xo-navigation />
+		
+	</body>
+</html>
+<link rel="import" href="./common/footer.html?__inline">
+<script type="text/javascript" src="//cdn.bootcss.com/vuex/1.0.0/vuex.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/vue-resource/1.0.3/vue-resource.min.js"></script>
+<script type="text/javascript" src="../static/js/detailClass.js"></script>

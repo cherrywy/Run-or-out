@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>跑步日历</title>
+		<link rel="import" href="./common/header.html?__inline">
+		<link rel="stylesheet" type="text/css" href="../static/css/date.scss" />
+	</head>
+
+	<body id="so-v-date">
+		<div class="menu-block">
+			<div style="width: 100%;text-align: right;height: 0.8rem; line-height: 0.8rem;padding-right: 0.3rem;">
+				瘦身日历
+			</div>
+			<div class="date-list-head flex">
+				<span  class="iconfont icon-ttpodicon flex-item" v-if="monthList[0]>=minMonth" v-on:click="changeMonth(monthList[0])">{{monthList[0]}}</span>
+				<span class="flex-item">{{monthList[1]}}</span>
+				<span  class="iconfont icon-xiangyou2 flex-item"  v-if="monthList[2]&&monthList[2]<=maxMonth" v-on:click="changeMonth(monthList[2])">{{monthList[2]}}</span>
+			</div>
+			<div class="date-list-body">
+				<div class="{{parseInt(choosedMonth.split('-')[1])==list.month?'':'not-toMonth'}}" v-for="list in dayList">{{list.day}}<span v-if="parseInt(choosedMonth.split('-')[1])==list.month&&runDayList.indexOf(list.day)!=-1" style="background: {{runDayListDistance[runDayList.indexOf(list.day)] | backgroundColor}}">{{runDayListDistance[runDayList.indexOf(list.day)]+"K"}}</span></div>
+			</div>
+		</div>
+	</body>
+	<link rel="import" href="./common/footer.html?__inline">
+	<script src="../static/js/date.js"></script>
+
+</html>

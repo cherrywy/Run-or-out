@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="import" href="./common/header.html?__inline">
+		<link rel="stylesheet" type="text/css" href="../static/css/choseClass.scss">
+		<title>选择班级 - 不瘦就出局</title>
+	</head>
+	    <!-- body属性样式解决滚动冒泡事件 -->
+	<body id="chose-class-v" style="overflow: {{isShow?'hidden':'auto'}};height:100%;" v-cloak>
+	    <!-- 规则弹窗 -->
+		<div class="pop" v-show="isShow"  >
+		    <div class="bg" v-on:click="hideRules()"></div>
+			<i class="iconfont icon-iconfontweibiaoti1015" v-on:click="hideRules()"></i>
+			<span class="line"></span>
+			<div class="pop-content" id="pop-content">
+				<div class="title title{{rules[type].image_bg}}" style="">
+					<div class="bg" ></div>
+				<span>{{rules[type].title}}</span>
+				</div>
+				<div class="content">
+					<i class="iconfont {{rules[type].iconName}} font-background" ></i>
+					<div class="txt" v-for="list in rules[type].content">
+						<p><span>Q</span>&nbsp;&nbsp;{{list.question}}</p>
+						<p><span>A</span>&nbsp;&nbsp;{{list.answer}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 规则导航 -->
+		<div class="chose-class header">
+			<div>不瘦玩法</div>
+			<div class="rulePlay">
+				<ul>
+					<li class="type" v-on:click="showRules(0)">
+						<img class="iconfont icon-money" src="https://oigsunwyj.qnssl.com/meta/offical-website/icon/contrast.png"/>
+						<p>押钱</p>
+						<i class="iconfont icon-more"></i>
+					</li>
+					<li class="type" v-on:click="showRules(1)">
+						<img class="iconfont icon-money" src="https://oigsunwyj.qnssl.com/meta/offical-website/icon/target.png"/>
+						<p>瘦身</p>
+						<i class="iconfont icon-more"></i>
+					</li>
+					<li class="type" v-on:click="showRules(2)">
+						<img class="iconfont icon-money" src="https://oigsunwyj.qnssl.com/meta/offical-website/icon/bonus.png"/>
+						<p>分钱</p>
+						<i class="showBtn iconfont icon-more"></i>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="chose-class body">
+			<!--平台发起班级列表-->
+			<div style="margin-bottom: 2rem;">
+				<a  v-for="classList in soClassList"  class="chose-class-a" href="/page/team/detail?team_id={{classList.id}}" onclick="MtaH5.clickStat('choseclassclassdetail');">
+					<div class="chose-class-list">
+						<div class="list-content">
+							<div class="content-name name-line">{{classList.name}}</div>
+							<span class="text rules rules-in" >
+								<span class="rule">￥{{classList.money/100}}元</span>
+								<span class="rule">{{classList.cycle_duration/7}}周</span>
+								<span class="rule-line rule">|</span>
+								<span class="rule">减重{{classList.target/10}}%</span>
+								<i class="iconfont icon-webicon215"></i>
+							</span>
+							<div class="text rules rules-out" style="display:none;">
+								<div class="rule-block">
+									<p class="money-sp" >￥{{classList.money/100}}元</p>
+									<p >{{classList.cycle_duration/7}}周</p>
+									<p >减重{{classList.target/10}}%</p>
+								</div>
+								<div class="rule-block">
+									<p>每期押契约金</p>
+									<p>每期瘦身时长</p>
+									<p>每期减重目标</p>
+								</div>
+								<div class="rule-block icon">
+									<i class="iconfont icon-shouqi"></i>
+								</div>
+							</div>
+							<span class="tags-info {{isColor?'going':''}} " v-show="isNum==1">报名中 · {{d_start}}天后截止</span>
+							<span class="tags-info {{isColor?'going':''}} "  v-show="isNum==2"> 报名中 · 今晚截止</span>
+							<span class="tags-info {{isColor?'going':''}} "  v-show="isNum==3"> 报名中 · {{d_finish+2}}天后截止</span>
+							<span class="tags-info {{isColor?'going':''}} " v-show="isNum==4"> 进行中 · {{d_finish-1}}天后可报名</span>
+						</div>
+						<div class="list-people">
+					
+							<span class="join-number" id="join-number">{{classList.num}}人</span>
+						</div>
+						<div class="list-avatar">
+							<div class="head-img" style="background: url({{classList.avatar | imgList '-w300h210'}}) no-repeat center;background-size:cover;"></div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+	<xo-navigation />
+</body>
+</html>
+<link rel="import" href="./common/footer.html?__inline">
+<script type="text/javascript" src="https://cdn.bootcss.com/vuex/1.0.0/vuex.min.js"></script>
+<script type="text/javascript" src="../static/js/choseClass.js"></script>

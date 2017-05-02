@@ -1,0 +1,55 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "微软雅黑";
+}
+.bluecolor{
+    color: #03a9f4;
+}
+.wentizixun{
+    background-color: #efeff4;
+    height: 3rem;
+    .weixin-tubiao{
+        height: 1.6rem;
+        line-height: 1.6rem;
+        text-align: center;
+        .icon-weixin{
+            font-size: 60px;
+        }
+    }
+    .text{
+        text-align: center;
+    }
+    .zixun-des{
+        margin-top: 0.2rem;
+        text-align: center;
+        font-size: 12px;
+    }
+}
+.erweima{
+    height: 5rem;
+    line-height: 5rem;
+    margin-top: 0.8rem;
+    width: 100%;
+    text-align: center;
+    img{
+        height: 4.5rem;
+        width: 4rem;
+    }
+}
+.telNum{
+    height: 0.9rem;
+    line-height: 0.9rem;
+    font-size: 11px;
+    text-align: center;
+}
+.fullpage-pop-body {
+    padding: 0.2rem;
+}
+.fullpage-pop-body img{
+    display: block;
+    margin: 0 auto;
+}
+.fullpage-pop-body span{
+    font-size: 13px;
+}

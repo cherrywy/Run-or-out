@@ -1,0 +1,359 @@
+*{
+    font-family: "微软雅黑";
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.color-f4{
+    color: #03a9f4;
+}
+.List-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 1.5rem;
+    .cup{
+        width: 3rem;
+        height: 1.2rem;
+        .tubiao{
+             height: 0.9rem;
+             width: 100%;
+             .iconfont{
+                 font-size: 32px;
+             }  
+        };
+        .des{
+            height: 0.3rem;
+            width: 100%;
+            span{
+                color: #969696;
+                font-size: 11px;
+            }
+        }
+    }
+}
+.List-content{
+    .list{
+        margin-top: 0.1rem;
+        .Content-list{
+            display: -webkit-box;
+            display: box;
+            background-color: #FFFFFF;
+            height: 1.2rem;
+            .full{
+                width: 3px;
+            };
+            .left{
+                 padding-top: 0.08rem;
+                 padding-left: 0.35rem;
+                 -webkit-box-flex: 1;
+                 box-flex: 1;
+                 .name{
+                     height: 0.5rem;
+                     line-height: 0.5rem;
+                     font-size: 13px;
+                 };
+                 .date{
+                      height: 0.5rem;
+                      line-height: 0.5rem;
+                      font-size: 11px;
+                 }
+            };
+            .right{
+                padding-top: 0.08rem;
+                margin-right: 0.2rem;
+                .state{
+                     height: 0.5rem;
+                     line-height: 0.5rem;
+                     font-size: 11px;
+                }
+                .button{
+                     height: 0.5rem;
+                     line-height: 0.5rem;
+                     font-size: 11px;
+                     text-align: center;
+                     .icon-xiangxia{
+                         font-size: 28px;
+                     }
+                }
+            };
+        }
+        .Content-detail{
+            display: -webkit-box;
+            display: box;
+            background-color: #fafafa;
+            height: 7.3rem;
+            width: 100%;
+            .left{
+                width: 0.35rem;
+            };
+            .right{
+                 -webkit-box-flex: 1;
+                 box-flex: 1;
+                 padding-right: 0.2rem;
+                 .header{
+                     height: 0.8rem;
+                     line-height: 0.8rem;
+                     font-size: 11px;
+                     color: #969696;
+                     i{
+                         color: #03a9f4;
+                         font-size: 11px;
+                     };
+                     span{
+                        font-size: 11px;
+                        color: #969696;  
+                     }
+                 };
+                 .content{
+                     display: flex;
+                     justify-content: space-between;
+                     height: 2.5rem;
+                     .content-div{
+                         width: 30%;
+                         background-size: 100% 2.5rem;
+                         text-align: center;
+                         padding-top: 0.1rem;
+                         color: #FFFFFF;
+                         font-size: 10px;
+                         i{
+                             font-size: 1rem;
+                             color: #FFFFFF;
+                             opacity: 0.5;
+                             -webkit-opacity: 0.5;
+                         }
+                     };
+                     .all{
+                         background: url(../images/all.png);
+                         background-size: 100% 2.5rem;  
+                     };
+                     .href{
+                         background: url(../images/href.png);
+                         background-size: 100% 2.5rem; 
+                     };
+                     .content-div-ope{
+                          width: 30%;
+                         .opInputDiv{
+                             width: 100%;
+                             height: 1.2rem;
+                             .opInput{
+                                 width: 100%;
+                                 height: 0.5rem;
+                                 background-color: #fafafa;
+                                 border: 1px #c8c8c8 solid;
+                             };
+                            .opInput::-webkit-input-placeholder{
+                             font-size: 12px;
+                             text-align: center;
+                         } 
+                             
+                         };
+                         .opBtn{
+                             width: 100%;
+                             .btn{
+                                 width: 100%;
+                                 background: #03a9f4;
+                                 border: 1px #03a9f4 solid;
+                                 color: #FFFFFF;
+                                 text-align: center;
+                                 height: 0.5rem;
+                                 line-height: 0.5rem;
+                                 font-size: 12px;
+                             };
+                             .nobtn{
+                                 width: 100%;
+                                 background: #c8c8c8;
+                                 border: 1px #c8c8c8 solid;
+                                 color: #FFFFFF;
+                                 text-align: center;
+                                 height: 0.5rem;
+                                 line-height: 0.5rem;
+                                 font-size: 12px;
+                             };
+                             .btnpass{
+                                width: 100%;
+                                 background: #11cd6e;
+                                 border: 1px #11cd6e solid;
+                                 color: #FFFFFF;
+                                 height: 0.5rem;
+                                 line-height: 0.5rem;
+                                 font-size: 12px;
+                                 text-align: center;
+                                 border-radius: 3px;  
+                             };
+                            
+                         }
+                     }
+                 };
+                 
+            }
+        }
+    }
+}
+
+.color-active{
+    color: #38d774;
+}
+.color-pending{
+    color: #fc4548;
+}
+.color-finished{
+    color: #C8C8C8;
+}
+
+.bgcolor-active{
+    background-color: #38d774;
+}
+.bgcolor-pending{
+    background-color: #fc4548;
+}
+.bgcolor-finished{
+    background-color: #C8C8C8;
+}
+.tag{
+    display: inline-block;
+    background-color: #fc4548;
+    color: #FFFFFF;
+    font-size: 11px;
+    float: right;
+}
+
+.pop{
+        -webkit-user-select:none;
+        // display:none;
+        position:fixed;
+        width:100%;
+        height:100%;
+        text-align:center;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        z-index:999;
+        background:rgba(#444444,0.5);
+        padding-top:1.56rem;
+        .bg{
+            position: absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            background: rgba(#101010,0.62);
+                
+            
+        }
+        .icon-iconfontweibiaoti1015{
+            position:absolute;
+            top:0.78rem;
+            left:5.34rem;
+            font-size:0.36rem;
+            color:#eee;
+
+        }
+        .line{
+            position:absolute;
+            top: 1.13rem;
+            left:5.52rem;
+            height:0.46rem;
+            border-left: 1px solid #fff;
+        }
+        .font-background{
+            position:absolute;
+            // top:2rem;
+            right:0.2rem;
+            font-size:0.8rem;
+            color:#03a9f4;
+            opacity: 0.1;
+
+        }
+        .pop-content{
+            background-color: #fff;
+            height:7.24rem;
+            width:5.6rem;
+            margin:0 auto;
+            border-radius: 0.1rem;
+            border-top-left-radius: 0.1rem;
+            border-top-right-radius: 0.1rem;
+
+            .title{
+                height:1.3rem;
+                width:100%;
+                margin:0 auto;
+                border-top-left-radius: 0.1rem;
+                border-top-right-radius: 0.1rem;
+                line-height:1.3rem;
+                color:#ffffff;
+                font-size:0.5rem;
+                .bg{
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    right:0;
+                    bottom:0;
+                    background: rgba(#101010,0.62);
+                    border-top-left-radius: 0.1rem;
+                    border-top-right-radius: 0.1rem;
+                }
+                span{
+                        color: #fff;
+                        font-size: .5rem;
+                        vertical-align: middle;
+                }
+                &.title1{
+                    background:url('../images/yaqian_bg.jpg') no-repeat center;background-size: cover;
+                }
+                &.title2{
+                    background:url('../images/yaqian_bg.jpg') no-repeat center;background-size: cover;
+                }
+                &.title3{
+                    background:url('../images/yaqian_bg.jpg') no-repeat center;background-size: cover;
+                }
+            }
+            //滚动条样式
+            .content::-webkit-scrollbar {
+                width:2px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .content::-webkit-scrollbar-thumb {
+                background:rgba(#29b6f6,0.21);
+            }
+            .content{
+                text-align: left;
+                height:5.94rem;
+                width:100%;
+                overflow-y: auto;
+                .txt:nth-child(2n-1){
+                 background-color:rgb(250,250,250);
+                }
+                .txt{
+                        padding-top: .2rem;
+                        padding-bottom: .1rem;
+                        padding-left: 0.2rem;
+                        padding-right: 0.1rem;
+                    p{
+                        color:#969696;
+                    }
+                    span{
+                        color:#29b6f6;
+                    }
+                    p:first-child,p:first-child span{
+                        font-size:0.26rem;
+                        line-height:0.38rem;
+                        margin-bottom:0.2rem;
+                    }
+                    p:last-child,p:last-child span{
+                        font-size:0.2rem;
+                        line-height:0.3rem;
+                        margin-bottom:0.1rem;
+                    }
+                }
+            }
+            
+        }
+
+    }
+
+

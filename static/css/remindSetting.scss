@@ -1,0 +1,59 @@
+*{
+	font-family: "微软雅黑";
+}
+.tixing-tubiao{
+	text-align: center;
+	color: #03a9f4;
+	margin-top: 0.4rem;
+}
+.tixing-shezhi .text{
+	height: 0.5rem;
+	line-height: 0.5rem;
+	text-align: center;
+}
+.icon-iconfont72{
+	font-size: 30px;
+}
+.bluecolor{
+	color: #03a9f4;
+}
+.tixing-des{
+	margin-top: 0.4rem;
+	font-size: 9px;
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+.tixing{
+    width: 100%;
+    display: -webkit-box;
+    display: box;
+    height: 1rem;
+    border-bottom: 1px #efeff4 solid;
+    line-height: 1rem;
+}
+.tixing .duihaoDIV{
+    width: 42px;
+    padding-left: 10px;
+}
+.tixing .tixing-content{
+    -webkit-box-flex: 1;
+    box-flex:1; 
+    display: box;
+    display: -webkit-box;
+    .text{
+        width: 1rem;
+    };
+    .timeSet{
+         -webkit-box-flex: 1;
+        box-flex:1; 
+        text-align: right;
+        padding-right: 0.4rem;
+    }
+    
+}
+.butixing{
+    padding-left: 0.4rem;
+    line-height: 1rem;
+    height: 1rem;
+    border-bottom: 1px #efeff4 solid;
+}

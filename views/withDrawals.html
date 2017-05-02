@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="import" href="./common/header.html?__inline">
+		<title>提现弹窗</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/withDrawals.scss">
+	</head>
+
+	<body id="v-with-drawals">
+		<div class="content">
+			<div class="bg-content"></div>
+			<div class="content-div" >
+				<div class="div-header">
+					提现确定
+				</div>
+				<div class="div-content">
+					<div class="div-money">
+						<span class="text">每笔限提1~200元</span>
+						<span class="balance">余额{{money}}元</span>
+					</div>
+					<div class="div-input">
+						<input id="money" onkeyup="num(this)" type="text" placeholder="输入提现金额">
+					</div>
+					
+				</div>
+				<div class="div-footer">
+					<div class="cancel">
+						<div class="btn" onclick="cancel()">取消</div>	
+					</div>			
+					<div class="sure">
+						<div class="btn" onclick="withdraw()">确定</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<link rel="import" href="./common/footer.html?__inline">
+<script type="text/javascript" src="../static/js/withDrawals.js"></script>
